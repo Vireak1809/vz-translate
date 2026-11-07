@@ -2,6 +2,9 @@ node_modules
 .next
 .next-dev
 .git
+.env
+.env.*
+!.env.example
 .venv
 .venv311
 __pycache__

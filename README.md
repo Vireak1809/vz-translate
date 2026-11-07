@@ -6,6 +6,12 @@ A browser-based subtitle translator and optional Khmer video dubbing tool. The f
 
 ### Docker Compose
 
+Create the local environment file from the template:
+
+```powershell
+Copy-Item .env.example .env
+```
+
 ```powershell
 docker compose up --build
 ```
@@ -17,6 +23,14 @@ The NLLB model (`facebook/nllb-200-distilled-600M`) is downloaded from Hugging F
 Use **Generate subtitles** in the header to upload a video and transcribe its speech into timed SRT cues with the local Whisper model (`openai/whisper-small`). The header progress indicator reports upload and processing progress. The model is downloaded from Hugging Face the first time and may take a while. Generated subtitles are saved in the current browser project; choose the source language and use **Translate all** to optionally translate them into Khmer. Video uploads are limited to 2 GB by default (`MAX_VIDEO_UPLOAD_BYTES`).
 
 ### Run the services separately
+
+Create the local environment file before starting the services:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Edit `.env` to change the API URL, allowed frontend origins, upload limits, or model names. The file is ignored by Git and should not contain secrets committed to the repository.
 
 In one terminal:
 
@@ -31,7 +45,6 @@ FFmpeg and ffprobe must be installed and available on `PATH` for subtitle genera
 
 ```powershell
 npm install
-$env:NEXT_PUBLIC_API_URL = "http://localhost:8000"
 npm run dev
 ```
 
@@ -39,7 +52,7 @@ The backend allows frontend origins at `localhost` and `127.0.0.1` on ports 3000
 
 ## Deploy to Render
 
-The root `render.yaml` defines two Docker web services: the FastAPI API and the Next.js frontend. Push this repository to a Git provider connected to Render, then choose **New → Blueprint** and select the repository. Keep the service names `vz-translate-api` and `vz-translate-web`; the API URL and CORS origin in the Blueprint use their corresponding `onrender.com` hostnames.
+The root `render.yaml` defines two Docker web services: the FastAPI API and the Next.js frontend. Push this repository to a Git provider connected to Render, then choose **New → Blueprint** and select the repository. Keep the service names `vz-translate-api` and `vz-translate-web`; the API URL and CORS origin in the Blueprint use their corresponding `onrender.com` hostnames. Render does not automatically load the repository's local `.env` file; the deployment values are configured in `render.yaml` and can be overridden in the service's **Environment** settings. Never commit a real `.env` file or secrets.
 
 The API uses Render's `pro` plan (2 CPUs / 4 GB RAM) because the Whisper and NLLB models need substantially more memory than a free instance provides. The frontend uses the free plan and may spin down when idle. Model files are not on persistent storage, so they may need to download again after an API restart or deploy. Upgrade the API plan if model inference runs out of memory.
 
