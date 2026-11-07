@@ -1,0 +1,13 @@
+note for FastAPI  
+
+py -m pip install fastapi
+py -m pip install uvicorn
+py -m pip install pydantic
+py -m pip install python-multipart
+py -m pip install starlette
+py -m pip install transformers
+py -m pip install torch
+
+py -m pip install fastapi uvicorn python-multipart
+
+py -m uvicorn main:app --reload

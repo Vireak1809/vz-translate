@@ -1,0 +1,201 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Khmer Subtitle Translator",
+			"type": "shell",
+			"command": "docker",
+			"args": [
+				"compose",
+				"up",
+				"--build"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install frontend dependencies",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"install"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install backend dependencies",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"-m",
+				"venv",
+				".venv"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start frontend dev server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Typecheck",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"typecheck"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Docker Compose Up Build",
+			"type": "shell",
+			"command": "docker",
+			"args": [
+				"compose",
+				"up",
+				"--build"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check npm availability",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--version"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Create backend venv and install requirements",
+			"type": "shell",
+			"command": "C:\\Python314\\python.exe",
+			"args": [
+				"-m",
+				"venv",
+				".venv"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Install backend requirements",
+			"type": "shell",
+			"command": "D:\\Vz-translate\\.venv\\Scripts\\python.exe",
+			"args": [
+				"-m",
+				"pip",
+				"install",
+				"-r",
+				"backend\\requirements.txt"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Check frontend dependencies",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"ls",
+				"--depth=0"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Start Next.js dev server",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"set NEXT_PUBLIC_API_URL=http://localhost:8000&& npm run dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start frontend server PowerShell",
+			"type": "shell",
+			"command": "$env:NEXT_PUBLIC_API_URL='http://localhost:8000'; npm run dev",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start FastAPI backend",
+			"type": "shell",
+			"command": "D:\\Vz-translate\\.venv\\Scripts\\python.exe",
+			"args": [
+				"-m",
+				"uvicorn",
+				"backend.main:app",
+				"--reload",
+				"--port",
+				"8000"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start clean frontend server on 3005",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev",
+				"--",
+				"--port",
+				"3005"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Typecheck subtitle progress changes",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"typecheck"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Build subtitle progress changes",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Build Render deployment frontend",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		}
+	]
+}

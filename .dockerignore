@@ -1,0 +1,8 @@
+node_modules
+.next
+.next-dev
+.git
+.venv
+.venv311
+__pycache__
+*.py[cod]

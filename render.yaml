@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: vz-translate-api
+    runtime: docker
+    plan: pro
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    envVars:
+      - key: CORS_ORIGINS
+        value: https://vz-translate-web.onrender.com
+      - key: MAX_VIDEO_UPLOAD_BYTES
+        value: "2147483648"
+      - key: WHISPER_MODEL
+        value: openai/whisper-small
+
+  - type: web
+    name: vz-translate-web
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://vz-translate-api.onrender.com
